@@ -1,0 +1,83 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <BitmapSource x:Key="WriterImageSource">Images/Writer.ico</BitmapSource>
+
+    <Image x:Key="NewImage"
+           Width="16"
+           Height="16"
+           x:Shared="False"
+           Source="Images/New.png" />
+    <Image x:Key="OpenImage"
+           Width="16"
+           Height="16"
+           x:Shared="False"
+           Source="Images/Open.png" />
+    <Image x:Key="SaveImage"
+           Width="16"
+           Height="16"
+           x:Shared="False"
+           Source="Images/Save.png" />
+    <Image x:Key="PrintImage"
+           Width="16"
+           Height="16"
+           x:Shared="False"
+           Source="Images/Print.png" />
+    <Image x:Key="PrintPreviewImage"
+           Width="16"
+           Height="16"
+           x:Shared="False"
+           Source="Images/PrintPreview.png" />
+
+    <Image x:Key="UndoImage"
+           Width="16"
+           Height="16"
+           x:Shared="False"
+           Source="Images/Undo.png" />
+    <Image x:Key="RedoImage"
+           Width="16"
+           Height="16"
+           x:Shared="False"
+           Source="Images/Redo.png" />
+    <Image x:Key="CutImage"
+           Width="16"
+           Height="16"
+           x:Shared="False"
+           Source="Images/Cut.png" />
+    <Image x:Key="CopyImage"
+           Width="16"
+           Height="16"
+           x:Shared="False"
+           Source="Images/Copy.png" />
+    <Image x:Key="PasteImage"
+           Width="16"
+           Height="16"
+           x:Shared="False"
+           Source="Images/Paste.png" />
+    <Image x:Key="DeleteImage"
+           Width="16"
+           Height="16"
+           x:Shared="False"
+           Source="Images/Delete.png" />
+
+    <Image x:Key="CloseSmallImage"
+           Width="11"
+           Height="10"
+           x:Shared="False"
+           Source="Images/CloseSmall.png" />
+    <Image x:Key="ClosePreviewImage"
+           Width="16"
+           Height="16"
+           x:Shared="False"
+           Source="Images/ClosePreview.png" />
+
+    <Image x:Key="FlagEnImage"
+           Width="16"
+           Height="11"
+           x:Shared="False"
+           Source="Images/FlagEn.png" />
+    <Image x:Key="FlagDeImage"
+           Width="16"
+           Height="11"
+           x:Shared="False"
+           Source="Images/FlagDe.png" />
+</ResourceDictionary>

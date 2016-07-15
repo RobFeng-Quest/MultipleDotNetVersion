@@ -1,0 +1,119 @@
+﻿<Window x:Class="Writer.Presentation.Views.ShellWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:c="clr-namespace:Writer.Presentation.Converters"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:p="clr-namespace:Writer.Presentation.Properties"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:vm="clr-namespace:Writer.Applications.ViewModels;assembly=Writer.Applications"
+        Title="{Binding Title}"
+        Width="700"
+        Height="450"
+        d:DataContext="{d:DesignInstance vm:ShellViewModel}"
+        mc:Ignorable="d">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Generate.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <DockPanel>
+        <DockPanel.LayoutTransform>
+            <ScaleTransform ScaleX="{Binding ZoomService.ActiveZoom}" ScaleY="{Binding ZoomService.ActiveZoom}" />
+        </DockPanel.LayoutTransform>
+
+        <Ribbon Margin="0,0,0,2" DockPanel.Dock="Top">
+            <Ribbon.QuickAccessToolBar>
+                <RibbonQuickAccessToolBar>
+                    <RibbonButton Command="{Binding FileService.SaveCommand}"
+                                  SmallImageSource="{StaticResource SaveImageSource}"
+                                  ToolTipDescription="SaveToolTipDescription}"
+                                  ToolTipTitle="SaveToolTip}" />
+                    <RibbonButton Command="ApplicationCommands.Undo"
+                                  SmallImageSource="{StaticResource UndoImageSource}"
+                                  ToolTipDescription="UndoToolTipDescription}"
+                                  ToolTipTitle="UndoToolTip}" />
+                    <RibbonButton Command="ApplicationCommands.Redo"
+                                  SmallImageSource="{StaticResource RedoImageSource}"
+                                  ToolTipDescription="RedoToolTipDescription}"
+                                  ToolTipTitle="RedoToolTip}" />
+                </RibbonQuickAccessToolBar>
+            </Ribbon.QuickAccessToolBar>
+
+
+            <Ribbon.HelpPaneContent>
+                <RibbonButton Command="{Binding AboutCommand}"
+                              SmallImageSource="{StaticResource HelpImageSource}"
+                              ToolTipDescription="HelpToolTipDescription"
+                              ToolTipTitle="HelpToolTipTitile" />
+            </Ribbon.HelpPaneContent>
+
+            <RibbonTab Header="Home"
+                       IsSelected="{Binding IsVisible,
+                                            RelativeSource={RelativeSource Self},
+                                            Mode=OneWay}"
+                       KeyTip="H">
+                <RibbonGroup Header="Clipboard">
+                    <RibbonButton Command="ApplicationCommands.Paste"
+                                  KeyTip="V"
+                                  Label="Paste"
+                                  LargeImageSource="{StaticResource PasteLargeImageSource}" />
+                    <RibbonButton Command="ApplicationCommands.Cut"
+                                  KeyTip="X"
+                                  Label="Cut"
+                                  SmallImageSource="{StaticResource CutImageSource}" />
+                    <RibbonButton Command="ApplicationCommands.Copy"
+                                  KeyTip="C"
+                                  Label="Copy"
+                                  SmallImageSource="{StaticResource CopyImageSource}" />
+                </RibbonGroup>
+
+            </RibbonTab>
+
+            <RibbonTab Header="View" KeyTip="V">
+
+                <RibbonGroup Header="Zoom">
+                    <RibbonButton Command="{Binding ShellService.ActiveZoomCommands.ZoomInCommand}"
+                                  KeyTip="I"
+                                  Label="ZoomIn"
+                                  LargeImageSource="{StaticResource ZoomInLargeImageSource}"
+                                  ToolTipDescription="ZoomInToolTipDescription"
+                                  ToolTipTitle="ZoomInToolTip" />
+                    <RibbonButton Command="{Binding ShellService.ActiveZoomCommands.ZoomOutCommand}"
+                                  KeyTip="O"
+                                  Label="ZoomOut"
+                                  LargeImageSource="{StaticResource ZoomOutLargeImageSource}"
+                                  ToolTipDescription="ZoomOutToolTipDescription"
+                                  ToolTipTitle="ZoomOutToolTip" />
+                </RibbonGroup>
+            </RibbonTab>
+
+        </Ribbon>
+
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem Content="{x:Static p:Resources.Ready}" />
+            <StatusBarItem HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal">
+                    <Label Margin="0"
+                           VerticalAlignment="Center"
+                           Content="{x:Static p:Resources.ZoomMenu}"
+                           Padding="0"
+                           Target="{Binding ElementName=zoomBox}" />
+                    <ComboBox x:Name="zoomBox"
+                              Margin="7,0,0,0"
+                              ItemStringFormat="{}{0:P}"
+                              ItemsSource="{Binding ZoomService.DefaultZooms}"
+                              SelectedItem="{Binding ZoomService.ActiveZoom}"
+                              Style="{StaticResource {x:Static ToolBar.ComboBoxStyleKey}}" />
+                </StackPanel>
+            </StatusBarItem>
+        </StatusBar>
+
+        <ContentPresenter Content="{Binding ContentView}" />
+    </DockPanel>
+
+</Window>
